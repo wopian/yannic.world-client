@@ -9,7 +9,7 @@
     "build": "node build/build.js",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "test": "npm run unit",
-    "lint": "eslint --ext .js,.vue src test/unit/specs"
+    "lint": "eslint --ext .js,.vue client test/unit/specs"
   },
   "engines": {
     "node": ">= 7.0.0",
@@ -74,6 +74,7 @@
     "vue-router": "2.2.1",
     "vue-style-loader": "2.0.1",
     "vue-template-compiler": "2.1.10",
+    "vue-hot-reload-api": "2.0.10",
     "webpack": "2.2.1",
     "webpack-dev-middleware": "1.10.1",
     "webpack-hot-middleware": "2.17.1",
