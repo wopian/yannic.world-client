@@ -14,7 +14,7 @@ export default new Router({
       component: List
     },
     {
-      path: '/post/:hash',
+      path: '/:hash',
       name: 'post',
       component: Post
     }
