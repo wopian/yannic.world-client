@@ -1,5 +1,7 @@
 # yannic.world
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/wopian/yannic.world.svg)](https://greenkeeper.io/)
+
 > A Vue.js project
 
 ## Build Setup
