@@ -1,15 +1,22 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from 'components/Hello'
+import List from 'components/List.vue'
+import Post from 'components/Post.vue'
 
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
-      name: 'Hello',
-      component: Hello
+      name: 'list',
+      component: List
+    },
+    {
+      path: '/post/:hash',
+      name: 'post',
+      component: Post
     }
   ]
 })
