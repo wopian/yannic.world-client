@@ -18,5 +18,5 @@ before_script:
 script:
 - npm run build
 after_success:
-- test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && bash build/deploy.bash
+- test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && bash build/deploy.sh
 - bash <(curl -s https://codecov.io/bash)
