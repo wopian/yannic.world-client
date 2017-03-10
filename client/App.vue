@@ -28,7 +28,7 @@ export default {
   },
   computed: {
     development () {
-      return this.$route.query.dev ? true : window.location.port === '4004'
+      return this.$route.query.dev !== undefined ? true : window.location.port === '4004'
     }
   },
   data () {
