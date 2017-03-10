@@ -1,16 +1,19 @@
-<template>
-  <div id="app">
-    <header class='header'>
-      <router-link to='/'>{{ title }}</router-link>
-      <div style='clear: both'></div>
-      <search-bar></search-bar>
-    </header>
-    <router-view></router-view>
-    <footer-bar></footer-bar>
-  </div>
-</template>
+<template lang='pug'>
+  #app(v-if='development')
+    header
+      nav
+        h1 {{ title }}
+          span(v-if='development') Dev
+        router-link(:to='{name: "list"}') Home
+        search-bar
 
-<style lang='sass' src='client/style/index.sass'></style>
+    router-view
+    footer-bar
+
+  #app(v-else)
+    div(style='background:white;position:relative;z-index:9999;display:flex;justify-content:center;align-items:center;width:100vw;height:100vh;')
+      img(style='width:50%' src='http://vignette1.wikia.nocookie.net/roblox/images/4/4a/OH_NOES.png/revision/latest?cb=20111228145107')
+</template>
 
 <script>
 import config from 'client/config'
@@ -23,6 +26,11 @@ export default {
     footerBar,
     searchBar
   },
+  computed: {
+    development () {
+      return window.location.hostname === 'localhost'
+    }
+  },
   data () {
     return {
       title: config.blogTitle
@@ -31,10 +39,49 @@ export default {
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+<style lang='sass'>
+@import ~bootstrap/scss/bootstrap
+@import ~prismjs/themes/prism.css
+@import ~style/variables
+
+#app
+  font-family: 'Avenir', Helvetica, Arial, sans-serif
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+
+header
+  @extend .navbar
+  @extend .navbar-light
+  @extend .fixed-top
+  background: $primary
+  transition: background 400ms ease-out
+  overflow-y: hidden
+
+  nav
+    @extend .nav
+    @extend .container
+    flex-align: flex-start
+
+  h1
+    @extend .navbar-brand
+    @extend .mb-0
+    padding-left: 15px
+    color: $white
+    font-weight: 700
+    cursor: default
+    &:hover
+      color: $white
+    span
+      font-weight: 400
+
+  a
+    @extend .nav-link
+    transition: color 200ms ease-out
+    color: rgba($white, .7)
+    &:hover
+      color: $white
+      transition: color 100ms ease-in
+
+  input
+    margin-left: auto
 </style>

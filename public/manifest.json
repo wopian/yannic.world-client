@@ -1,0 +1,12 @@
+{
+  "name": "yannic.world",
+  "short_name": "yannic.world",
+  "description": "Hello world",
+  "start_url": ".",
+  "lang": "en",
+  "url": ".",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#fafafa",
+  "theme_color": "#1976d2"
+}
