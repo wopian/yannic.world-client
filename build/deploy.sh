@@ -16,11 +16,11 @@ git init
 git config user.name "$GH_USERNAME"
 git config user.email "$GH_EMAIL"
 
-git remote add upstream "https://$GH_TOKEN@github.com/wopian/hibari.git"
+git remote add upstream "https://$GH_TOKEN@github.com/wopian/yannic.world.git"
 git fetch upstream
 git reset upstream/gh-pages
 
-echo "hb.wopian.me" > CNAME
+echo "yannic.world" > CNAME
 # SPA hack for GitHub Pages
 cp index.html 404.html
 
