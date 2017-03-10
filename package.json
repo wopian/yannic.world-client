@@ -9,7 +9,8 @@
     "build": "node build/build.js",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "test": "npm run unit",
-    "lint": "eslint --ext .js,.vue client test/unit/specs"
+    "lint": "eslint --ext .js,.vue client test/unit/specs",
+    "pull": "git stash && git pull --rebase origin master && git stash pop"
   },
   "engines": {
     "node": ">= 7.0.0",
@@ -34,7 +35,7 @@
     "connect-history-api-fallback": "~1.3.0",
     "copy-webpack-plugin": "~4.0.1",
     "cross-env": "~3.2.3",
-    "css-loader": "~0.26.4",
+    "css-loader": "~0.27.0",
     "es6-promise": "~4.1.0",
     "eslint": "~3.17.1",
     "eslint-config-standard": "~7.0.1",
