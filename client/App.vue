@@ -28,7 +28,7 @@ export default {
   },
   computed: {
     development () {
-      return window.location.hostname === 'localhost'
+      return this.$route.query.dev ? true : window.location.port === '4004'
     }
   },
   data () {
