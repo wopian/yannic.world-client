@@ -12,7 +12,7 @@
 
   #app(v-else)
     div(style='background:white;position:relative;z-index:9999;display:flex;justify-content:center;align-items:center;width:100vw;height:100vh;')
-      img(style='width:50%' src='http://vignette1.wikia.nocookie.net/roblox/images/4/4a/OH_NOES.png/revision/latest?cb=20111228145107')
+      img(style='width:50%' src='/ohnoes.png')
 </template>
 
 <script>
