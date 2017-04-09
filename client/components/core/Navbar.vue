@@ -30,33 +30,35 @@
   @import ~style/variables
 
   header
-    background: $white
+    background: transparent
     transition: background 400ms ease-out
     overflow-y: hidden
     border-bottom: 1px solid rgba($black, .05)
     height: 5rem
     justify-content: center
+    &:hover
+      background: rgba($white, .95)
+      .navbar-brand
+        color: darken($black, 2)
+      a
+        color: rgba(darken($black, 2), .7)
 
   nav
     flex-align: flex-start
 
   .navbar-brand
     padding-left: 15px
-    color: darken($primary, 2)
+    color: $white
     font-weight: 700
     cursor: default
     &:hover
-      color: darken($primary, 2)
+      color: darken($black, 2)
     span
       font-weight: 400
 
   a
     transition: color 200ms ease-out
-    color: rgba(darken($primary, 2), .7)
+    color: $white
     &:hover
-      color: $primary
       transition: color 100ms ease-in
-
-  input
-    margin-left: auto
 </style>

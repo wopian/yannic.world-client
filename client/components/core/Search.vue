@@ -34,3 +34,21 @@
     }
   }
 </script>
+
+<style lang='sass' scoped>
+  @import ~style/variables
+
+  input
+    margin-left: auto
+    background: transparent
+    border: 1px solid rgba($white, .2)
+    border-radius: 999rem
+    padding: 0 2rem
+    color: $white
+    &::-webkit-input-placeholder
+      color: $white
+    &:focus
+      outline: none
+      border-radius: 999rem
+      border: 1px solid rgba($black, .2)
+</style>

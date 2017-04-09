@@ -35,9 +35,11 @@ const Cache = {
 
 const getPostSummary = async (sha) => {
   let res = await axios.get(getPostUrl(sha))
-  let synopsis = fm(await atob(await res.data.content)).attributes.synopsis
-  let author = fm(await atob(await res.data.content)).attributes.author
-  return { synopsis, author }
+  let content = fm(await atob(await res.data.content))
+  let synopsis = content.attributes.synopsis
+  let author = content.attributes.author
+  let image = content.attributes.image
+  return { synopsis, author, image }
 }
 
 export default {
@@ -59,7 +61,8 @@ export default {
           sha: post.sha,
           size: post.size,
           content: attributes.synopsis,
-          author: attributes.author
+          author: attributes.author,
+          image: attributes.image
         })
       }
 

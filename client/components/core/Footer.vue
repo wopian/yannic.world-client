@@ -23,4 +23,8 @@
     justify-content: center
     border-top: 1px solid rgba($black, .05)
     background: darken($white, 4)
+
+  .navbar-text
+    text-align: center
+    width: 100%
 </style>
