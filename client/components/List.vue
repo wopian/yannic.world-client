@@ -1,6 +1,6 @@
 <template lang='pug'>
   main
-    .cta(v-bind:style='"background-image: url(" + filteredList[0].image + ")"')
+    .cta(v-if='lists' v-bind:style='"background-image: url(" + filteredList[0].image + ")"')
     .container
       .row(v-if='lists')
         .col(v-for='({ title, sha, date, content, author }, index) of filteredList' v-bind:key='sha')
