@@ -25,7 +25,7 @@
                   v-bind:title='date | formatDate'
                 ) {{ date | timeago }}
       //- Loading posts
-      div(v-else) Loading...
+      div(v-else)
       //- No posts found
       div(
         v-if='lists && filteredList.length === 0'
@@ -96,7 +96,7 @@
     > div:first-of-type
       min-width: 100%
       margin-top: 10vh
-      margin-bottom: 30vh
+      margin-bottom: 10vh
       a
         font-size: 4rem
         text-align: center
