@@ -1,4 +1,5 @@
 import axios from 'axios'
+import fm from 'front-matter'
 import 'es6-promise/auto'
 import config from 'client/config'
 import { onlyTitle, onlyDate } from 'client/utils'
@@ -32,26 +33,37 @@ const Cache = {
   }
 }
 
+const getPostSummary = async (sha) => {
+  let res = await axios.get(getPostUrl(sha))
+  let synopsis = fm(await atob(await res.data.content)).attributes.synopsis
+  let author = fm(await atob(await res.data.content)).attributes.author
+  return { synopsis, author }
+}
+
 export default {
-  getList () {
-    if (Cache.has('list')) {
+  async getList () {
+    if (await Cache.has('list')) {
       // Read from Cache
       return Promise.resolve(Cache.get('list'))
     } else {
-      return axios.get(getListUrl())
-        .then(res => res.data)
-        .then(arr => {
-          // Data cleaning
-          const list = arr.map(({ name, sha, size }) => ({
-            title: onlyTitle(name),
-            date: onlyDate(name),
-            sha,
-            size
-          }))
-          // Save to cache
-          Cache.set('list', list)
-          return list
+      const list = []
+
+      let res = await axios.get(getListUrl())
+      res = await res.data
+
+      for (let post of await res) {
+        let attributes = await getPostSummary(post.sha)
+        await list.push({
+          title: onlyTitle(post.name),
+          date: onlyDate(post.name),
+          sha: post.sha,
+          size: post.size,
+          content: attributes.synopsis,
+          author: attributes.author
         })
+      }
+
+      return list
     }
   },
   getDetail (hash) {

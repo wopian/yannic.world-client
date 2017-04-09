@@ -1,18 +1,16 @@
-<template>
-  <section class='list-view'>
-    <ol v-if='lists' class='list'>
-      <li v-for='{ title, sha, date } in filteredList' :key='sha' class='list-item'>
-        <router-link :to='"/" + sha' class='item-title'>
-          {{ title }}
-        </router-link>
-        <br>
-        <time pubdate='pubdate' :datetime='date | formatDate' :title='date | formatDate' class='item-date'>
-          {{ date | timeago }}
-        </time>
-      </li>
-    </ol>
-    <div v-else>loading...</div>
-  </section>
+<template lang='pug'>
+  main.container
+    .row(v-if='lists')
+      .col-12(v-for='{ title, sha, date, content, author } in filteredList' v-bind:key='sha')
+        router-link(v-bind:to='"/" + sha') {{ title }}
+        .card.card-block
+          p(v-if='content') {{ content }}
+          time.item-date(
+            pubdate='pubdate'
+            v-bind:datetime='date | formatDate'
+            v-bind:title='date | formatDate'
+          ) Posted {{ date | timeago }} by {{ author }}
+    div(v-else) Loading...
 </template>
 
 <script>
@@ -53,3 +51,19 @@
     }
   }
 </script>
+
+<style lang='sass' scoped>
+  @import ~style/variables
+
+  a
+    font-size: 2rem
+    font-weight: 700
+    color: $black
+    border-bottom: .125rem dotted $primary
+    text-decoration: none
+    &:hover
+      color: $primary
+
+  .row > div:not(:last-of-type)
+    margin-bottom: 1rem
+</style>

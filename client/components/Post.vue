@@ -1,14 +1,13 @@
-<template>
-  <section class='post-view'>
-    <h1 class='post-title'>
-      {{ title }}
-      <time pubdate='pubdate' :datetime='this.date | formatDate' :title='this.date | formatDate' class='post-date'>
-        {{ this.date | timeago }}
-      </time>
-    </h1>
-    <article v-if='content' v-html='htmlFromMarkdown'></article>
-    <div v-else>loading...</div>
-  </section>
+<template lang='pug'>
+  main.post-view.container
+    h1.post-title {{ title }}
+      time.post-date(
+        pubdate='pubdate'
+        v-bind:datetime='this.date | formatDate'
+        v-bind:title='this.date | formatDate'
+      ) {{ this.date | timeago }}
+    article(v-if='content' v-html='htmlFromMarkdown')
+    div(v-else) Loading...
 </template>
 
 <script>
