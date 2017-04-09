@@ -21,7 +21,7 @@
     },
     computed: {
       dev () {
-        return window.location.hostname === 'localhost'
+        return window.location.hostname === 'localhost' || this.$route.query.dev
       }
     }
   }
