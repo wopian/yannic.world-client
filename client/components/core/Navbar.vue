@@ -49,7 +49,6 @@
     padding-left: 15px
     color: $white
     font-weight: 700
-    cursor: default
     &:hover
       color: darken($black, 2)
     span
