@@ -66,6 +66,9 @@ export default {
         })
       }
 
+      // Save to cache
+      Cache.set('list', list)
+
       return list
     }
   },
