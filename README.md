@@ -19,8 +19,7 @@ Blog client for [yannic.world][0]
 
 - [git](https://git-scm.com/) 2.0.0 or newer
 - [node.js](https://nodejs.org) 7.0.0 or newer
-- npm 3.10.8 or newer (installed with node.js)
-  - run `npm install npm -g` to update to latest version
+- [yarn](https://https://yarnpkg.com) 0.21.0 or newer (optional)
 
 ### Setup
 
