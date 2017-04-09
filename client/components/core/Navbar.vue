@@ -26,6 +26,8 @@
 </script>
 
 <style lang='sass' scoped>
+  @import ~bootstrap/scss/variables
+  @import ~bootstrap/scss/mixins/breakpoints
   @import ~style/variables
 
   header
@@ -43,7 +45,9 @@
         color: rgba(darken($black, 2), .7)
 
   nav
-    flex-align: flex-start
+    @include media-breakpoint-down(xs)
+      &
+        margin: 0
 
   .navbar-brand
     padding-left: 15px

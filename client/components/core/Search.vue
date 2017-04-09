@@ -36,6 +36,8 @@
 </script>
 
 <style lang='sass' scoped>
+  @import ~bootstrap/scss/variables
+  @import ~bootstrap/scss/mixins/breakpoints
   @import ~style/variables
 
   input
@@ -45,10 +47,14 @@
     border-radius: 999rem
     padding: 0 2rem
     color: $white
+    max-width: 260px
     &::-webkit-input-placeholder
       color: $white
     &:focus
       outline: none
       border-radius: 999rem
       border: 1px solid rgba($black, .2)
+    @include media-breakpoint-down(xs)
+      &
+        width: 100%
 </style>
