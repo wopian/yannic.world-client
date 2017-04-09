@@ -1,7 +1,7 @@
 <template lang='pug'>
   main.container
     .row(v-if='lists')
-      .col-12(v-for='{ title, sha, date, content, author } in filteredList' v-bind:key='sha')
+      .col(v-for='{ title, sha, date, content, author } in filteredList' v-bind:key='sha')
         router-link(v-bind:to='"/" + sha') {{ title }}
         .card.card-block
           p(v-if='content') {{ content }}
@@ -64,6 +64,9 @@
     &:hover
       color: $primary
 
-  .row > div:not(:last-of-type)
-    margin-bottom: 1rem
+  .row
+    > div:first-of-type
+      min-width: 100%
+    > div:not(:last-of-type)
+      margin-bottom: 1rem
 </style>
