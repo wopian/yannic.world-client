@@ -1,0 +1,44 @@
+engines:
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - javascript
+    checks:
+      Similar code:
+        enabled: true
+    exclude_fingerprints:
+    - 95ea0e6ac034573af69bc979f6dcc0f5
+    - 29898bbee6f210eff6477b087ceb11a1
+  eslint:
+    enabled: true
+    config:
+      # config: .eslintrc.yml
+      extensions:
+      - .js
+      - .vue
+  fixme:
+    enabled: true
+  # Waiting on https://github.com/nodesecurity/nsp/pull/142 to support yarn.lock
+  nodesecurity:
+    enabled: false
+  markdownlint:
+    enabled: true
+    checks:
+      MD024:
+        enabled: false
+      MD033:
+        enabled: false
+  shellcheck:
+    enabled: true
+ratings:
+  paths:
+  - "**.js"
+  - "**.vue"
+  - "**.sass"
+  - "**.md"
+  - "**.sh"
+exclude_paths:
+- .vscode
+- public
+- tests

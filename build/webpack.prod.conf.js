@@ -7,6 +7,7 @@ var baseWebpackConfig = require('./webpack.base.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+var UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 var OfflinePlugin = require('offline-plugin')
 var env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
@@ -30,11 +31,24 @@ var webpackConfig = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       'process.env': env
     }),
+    // UglifyJS2 doesn't support ES6 still
+    // https://github.com/mishoo/UglifyJS2/issues/448
+    /*
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
       },
-      sourceMap: true
+      sourceMap: false
+    }),
+    */
+    // Workaround for above
+    // Remove uglify-js and uglifyjs-webpack-plugin when resolved
+    new UglifyJSPlugin({
+      compress: {
+        warnings: false
+      },
+      comments: false,
+      sourceMap: false,
     }),
     // extract css into its own file
     new ExtractTextPlugin({
@@ -129,11 +143,15 @@ var webpackConfig = merge(baseWebpackConfig, {
     // progressive web app
     // uses publicPath in webpack config
     new OfflinePlugin({
+      caches: 'all',
+      responseStrategy: 'network-first',
+      updateStrategy: 'changed',
       relativePaths: false,
-      AppCache: false,
+      // autoUpdate: true // Update every hour. 1000 * 60 * 60 * 5 = 5hrs
       ServiceWorker: {
         events: true
-      }
+      },
+      AppCache: false
     })
   ]
 })

@@ -5,17 +5,25 @@ language: node_js
 node_js: node
 cache:
   directories:
+  - $HOME/.cache/yarn
   - node_modules
 sudo: false
 matrix:
   fast_finish: true
 before_install:
-- npm update && npm prune
+- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.21.3
+- export PATH=$HOME/.yarn/bin:$PATH
 install:
-- travis_retry npm i
+- travis_retry yarn install
 before_script:
-- npm test
+- yarn test
 script:
-- npm run build
+- yarn run build
 after_success:
-- test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && bash build/deploy.sh
+- test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && test $TRAVIS_OS_NAME == "linux" && bash deploy.sh
+- bash yarn.sh
+- travis_retry yarn global add codeclimate-test-reporter
+- codeclimate-test-reporter < test/coverage/lcov.info
+addons:
+  code_climate:
+    repo_token:
