@@ -1,7 +1,8 @@
 <template lang='pug'>
   main
-    .cta(v-if='lists' v-bind:style='"background-image: url(" + filteredList[0].image + ")"')
+    .cta(v-if='lists && filteredList[0]' v-bind:style='"background-image: url(" + filteredList[0].image + ")"')
     .container
+      //- Posts found
       .row(v-if='lists')
         .col(v-for='({ title, sha, date, content, author }, index) of filteredList' v-bind:key='sha')
           router-link(v-bind:to='"/" + sha') {{ toTitleCase(title) }}
@@ -23,7 +24,14 @@
                   v-bind:datetime='date | formatDate'
                   v-bind:title='date | formatDate'
                 ) {{ date | timeago }}
+      //- Loading posts
       div(v-else) Loading...
+      //- No posts found
+      div(
+        v-if='lists && filteredList.length === 0'
+        style='position:fixed;top:0;left:0;display:flex;justify-content:center;align-items:center;width:100vw;height:100vh;')
+        //- img(style='width:50%' src='/ohnoes.png')
+        p No Posts Found
 </template>
 
 <script>
