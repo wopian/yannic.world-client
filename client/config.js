@@ -1,6 +1,6 @@
 module.exports = {
   blogTitle: 'yannic.world',
-  repo: 'wopian/test',
+  repo: 'wopian/yannic.world-posts',
   path: 'posts',
   branch: 'master'
 }
