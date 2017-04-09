@@ -5,22 +5,8 @@
       //- Posts found
       .row(v-if='lists')
         .col.col-12.col-md-6.col-lg-4(v-for='({ title, sha, date, content, author, image }, index) of filteredList' v-bind:key='sha')
-          //- Other posts
-          .post(v-if='index > 0')
-            img(v-bind:src='image' style='width: 100%')
-            router-link(v-bind:to='"/" + sha') {{ toTitleCase(title) }}
-            p(v-if='content') {{ content }}
-            .author
-              img(src='https://pbs.twimg.com/profile_images/479952743088394240/s2KvC_zT_400x400.png')
-              div
-                span {{ author || 'Unknown' }}
-                time(
-                  pubdate='pubdate'
-                  v-bind:datetime='date | formatDate'
-                  v-bind:title='date | formatDate'
-                ) {{ date | timeago }}
-          //- Lead post
-          .ctaPost(v-else)
+          div(v-bind:class='{ post: index > 0, ctaPost: index == 0 }')
+            img(v-if='index > 0' v-bind:src='image' style='width: 100%')
             router-link(v-bind:to='"/" + sha') {{ toTitleCase(title) }}
             p(v-if='content') {{ content }}
             .author
@@ -87,6 +73,8 @@
 </script>
 
 <style lang='sass' scoped>
+  @import ~bootstrap/scss/variables
+  @import ~bootstrap/scss/mixins/breakpoints
   @import ~style/variables
 
   a
@@ -99,12 +87,22 @@
       margin-bottom: 1rem
     > div:first-of-type
       min-width: 100%
-      margin-top: 10vh
+      margin-top: 7.5vh
+      @include media-breakpoint-up(sm)
+        &
+          margin-top: 10vh
       a
         font-size: 4rem
         text-align: center
         display: block
         color: $white
+        font-size: 2rem
+        @include media-breakpoint-up(sm)
+          &
+            font-size: 3rem
+        @include media-breakpoint-up(lg)
+          &
+            font-size: 4rem
       p
         color: $white
         width: 75%
@@ -113,20 +111,22 @@
         font-size: 1.05rem
 
   .author
-    margin: 1rem auto 0
     display: flex
     flex-direction: row
     flex-wrap: nowrap
     justify-content: center
     align-items: flex-start
     img
-      width: 2rem
+      width: 2.5rem
       border-radius: 999rem
-      display: inline-block
       margin-right: .5rem
     div
       display: inline-block
       width: auto
+      height: 2.5rem
+      display: flex
+      flex-direction: column
+      justify-content: center
     span
       display: block
       color: $white
@@ -149,6 +149,8 @@
       display: block
       margin-top: .75rem
       margin-bottom: .25rem
+    p
+      margin-bottom: .5rem
     .author
       justify-content: flex-start
     span
@@ -179,5 +181,7 @@
 
   .ctaPost
     height: calc(70vh - 10rem)
+    .author
+      margin: 1rem auto 0
 
 </style>
