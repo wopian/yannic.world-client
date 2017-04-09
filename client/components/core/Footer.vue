@@ -22,7 +22,8 @@
     margin-top: 1rem
     justify-content: center
     border-top: 1px solid rgba($black, .05)
-    background: darken($white, 4)
+    background: rgba(darken($white, 4), 0)
+    color: rgba($white, .5)
 
   .navbar-text
     text-align: center

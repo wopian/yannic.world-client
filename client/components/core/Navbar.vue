@@ -1,9 +1,8 @@
 <template lang='pug'>
   header.navbar.navbar-light.fixed-top
       nav.nav.container
-        h1.navbar-brand.mb-0 {{ title }}
+        router-link.navbar-brand.mb-0(v-bind:to='{name: "list"}') {{ title }}
           span(v-if='dev') Dev
-        router-link.nav-link(v-bind:to='{name: "list"}') Home
         search
 </template>
 

@@ -4,21 +4,29 @@
     .container
       //- Posts found
       .row(v-if='lists')
-        .col(v-for='({ title, sha, date, content, author }, index) of filteredList' v-bind:key='sha')
-          router-link(v-bind:to='"/" + sha') {{ toTitleCase(title) }}
-          .card.card-block(v-if='index > 0')
-            p(v-if='content') {{ content }}
-            time.item-date(
-              pubdate='pubdate'
-              v-bind:datetime='date | formatDate'
-              v-bind:title='date | formatDate'
-            ) Posted {{ date | timeago }} by {{ author }}
-          .ctaContent(v-else)
+        .col.col-12.col-md-6.col-lg-4(v-for='({ title, sha, date, content, author, image }, index) of filteredList' v-bind:key='sha')
+          //- Other posts
+          .post(v-if='index > 0')
+            img(v-bind:src='image' style='width: 100%')
+            router-link(v-bind:to='"/" + sha') {{ toTitleCase(title) }}
             p(v-if='content') {{ content }}
             .author
               img(src='https://pbs.twimg.com/profile_images/479952743088394240/s2KvC_zT_400x400.png')
               div
-                span {{ author }}
+                span {{ author || 'Unknown' }}
+                time(
+                  pubdate='pubdate'
+                  v-bind:datetime='date | formatDate'
+                  v-bind:title='date | formatDate'
+                ) {{ date | timeago }}
+          //- Lead post
+          .ctaPost(v-else)
+            router-link(v-bind:to='"/" + sha') {{ toTitleCase(title) }}
+            p(v-if='content') {{ content }}
+            .author
+              img(src='https://pbs.twimg.com/profile_images/479952743088394240/s2KvC_zT_400x400.png')
+              div
+                span {{ author || 'Unknown' }}
                 time(
                   pubdate='pubdate'
                   v-bind:datetime='date | formatDate'
@@ -84,11 +92,7 @@
   a
     font-size: 2rem
     font-weight: 700
-    color: $black
-    // border-bottom: .125rem dotted $primary
     text-decoration: none
-    &:hover
-      color: $primary
 
   .row
     > div:not(:last-of-type)
@@ -96,7 +100,6 @@
     > div:first-of-type
       min-width: 100%
       margin-top: 10vh
-      margin-bottom: 10vh
       a
         font-size: 4rem
         text-align: center
@@ -133,29 +136,48 @@
       color: rgba($white, .5)
       margin-top: -.5rem
 
+  .post
+    > img
+      border-radius: 1px
+      height: 14rem
+      object-fit: cover
+      background: rgba($black, .2)
+    a
+      color: $black
+      font-size: 24px
+      letter-spacing: -.02rem
+      display: block
+      margin-top: .75rem
+      margin-bottom: .25rem
+    .author
+      justify-content: flex-start
+    span
+      color: darken($primary, 6)
+    time
+      color: rgba($black, .5)
+
 
   .cta
     position: absolute
     top: 0
     left: 0
     right: 0
-    height: 90vh
+    height: 70vh
     width: 100%
     background-size: cover
     background-position: 0 80%
-    &:after,&:before
+    clip-path: polygon(0 0, 100% 0, 100% 95%, 50% 100%, 0 95%)
+    &:before
       content: ''
       position: absolute
       top: 0
       left: 0
       right: 0
       bottom: 0
-    &:before
       background: rgba($black, .5)
       z-index: 0
-    &:after
-      background: linear-gradient(to bottom, rgba($white, 0) 70%, rgba($white, 1) 95%)
 
-  .ctaContent
+  .ctaPost
+    height: calc(70vh - 10rem)
 
 </style>
