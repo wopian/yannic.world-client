@@ -1,9 +1,9 @@
 <template lang='pug'>
-  header.navbar.navbar-light.fixed-top
+  header.navbar.navbar-light.fixed-top(v-bind:class='{ transparent: !scrolled }')
       nav.nav.container
-        router-link.navbar-brand.mb-0(v-bind:to='{name: "list"}') {{ title }}
+        router-link.navbar-brand.mb-0(v-bind:to='{ name: "list" }') {{ title }}
           span(v-if='dev') Dev
-        search
+        search(v-bind:scrolled='scrolled')
 </template>
 
 <script>
@@ -16,12 +16,21 @@
     },
     data () {
       return {
-        title: config.blogTitle
+        title: config.blogTitle,
+        scrolled: false
       }
     },
     props: [
       'dev'
-    ]
+    ],
+    methods: {
+      handleScroll () {
+        this.scrolled = window.scrollY > 0
+      }
+    },
+    created () {
+      window.addEventListener('scroll', this.handleScroll)
+    }
   }
 </script>
 
@@ -31,14 +40,12 @@
   @import ~style/variables
 
   header
-    background: transparent
+    background: rgba($white, .95)
     transition: background 400ms ease-out
-    overflow-y: hidden
     border-bottom: 1px solid rgba($black, .05)
     height: 5rem
     justify-content: center
     &:hover
-      background: rgba($white, .95)
       .navbar-brand
         color: darken($black, 2)
       a
@@ -51,7 +58,7 @@
 
   .navbar-brand
     padding-left: 15px
-    color: $white
+    color: $black
     font-weight: 700
     &:hover
       color: darken($black, 2)
@@ -60,7 +67,14 @@
 
   a
     transition: color 200ms ease-out
-    color: $white
     &:hover
       transition: color 100ms ease-in
+
+  .transparent
+    background: transparent
+    &:hover
+      background: rgba($white, .95)
+    .navbar-brand,
+    a
+      color: $white
 </style>

@@ -1,5 +1,13 @@
-<template>
-  <input class='search' placeholder='Search...' ref='search' v-show='isPageList' v-model='keyword' @click='selectSearchText' @keyup.esc='resetSearch'>
+<template lang='pug'>
+  input(
+    placeholder='Search...'
+    ref='search'
+    v-bind:class='{ transparent: !scrolled }'
+    v-show='isPageList'
+    v-model='keyword'
+    @click='selectSearchText'
+    @keyup.esc='resetSearch'
+  )
 </template>
 
 <script>
@@ -9,6 +17,9 @@
         keyword: ''
       }
     },
+    props: [
+      'scrolled'
+    ],
     computed: {
       isPageList () {
         return this.$route.name === 'list'
@@ -43,13 +54,13 @@
   input
     margin-left: auto
     background: transparent
-    border: 1px solid rgba($white, .2)
+    border: 1px solid rgba($black, .2)
     border-radius: 999rem
     padding: 0 2rem
-    color: $white
+    color: $black
     max-width: 260px
     &::-webkit-input-placeholder
-      color: $white
+      color: $black
     &:focus
       outline: none
       border-radius: 999rem
@@ -57,4 +68,24 @@
     @include media-breakpoint-down(xs)
       &
         width: 100%
+
+  .transparent
+    border: 1px solid rgba($white, .2)
+    color: $white
+    &::-webkit-input-placeholder
+      color: $white
+    &:focus
+      border: 1px solid rgba($white, .2)
+</style>
+
+<style lang='sass'>
+  @import ~style/variables
+
+  header.transparent:hover
+    .transparent
+      content: 'hello'
+      border: 1px solid rgba($black, .2)
+      color: $black
+      &::-webkit-input-placeholder
+        color: $black
 </style>
