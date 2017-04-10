@@ -29,6 +29,7 @@
 </template>
 
 <script>
+  import Fuse from 'fuse.js'
   import api from 'client/api'
   import config from 'client/config'
 
@@ -42,10 +43,29 @@
     computed: {
       filteredList () {
         let keyword = (this.$route.query.keyword || '').toLowerCase()
-        // Filter by title, Order by publish date, desc
-        return this.lists
-          .filter(item => (item.title.toLowerCase().indexOf(keyword) !== -1))
-          .sort((itemA, itemB) => (new Date(itemB.date) - new Date(itemA.date)))
+
+        // Fuzzy match title, content and author
+        let fuse = new Fuse(this.lists, {
+          shouldSort: true,
+          threshold: 0.7,
+          location: 0,
+          distance: 1000,
+          maxPatternLength: 32,
+          minMatchCharLength: 1,
+          keys: [
+            'author',
+            'content',
+            'title'
+          ]
+        })
+
+        // Sort by publish date (desc)
+        let sortDate = this.lists
+          .sort((a, b) => (new Date(b.date) - new Date(a.date)))
+
+        // Fallback to a date ordered list if no keyword set
+        // Else fuzzy match the keyword
+        return keyword === '' ? sortDate : fuse.search(keyword)
       }
     },
     created () {
