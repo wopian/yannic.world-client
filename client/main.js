@@ -8,6 +8,12 @@ if (process.env.NODE_ENV === 'production') {
   require('./pwa')
 }
 
+// Scroll to top of page on route changes
+router.beforeEach((to, from, next) => {
+  window.scrollTo(0, 0)
+  next()
+})
+
 filter(Vue)
 
 /* eslint-disable no-new */
