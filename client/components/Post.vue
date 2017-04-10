@@ -109,7 +109,8 @@
     width: 100%
     background-size: cover
     background-position: 50% 26%
-    clip-path: polygon(0 0, 100% 0, 100% 88%, 50% 100%, 0 88%)
+    // clip-path: polygon(0 0, 100% 0, 100% 88%, 50% 100%, 0 88%)
+    clip-path: polygon(0 0, 100% 0, 100% 26vh, 50% 100%, 0 26vh)
     &:before
       content: ''
       position: absolute
@@ -176,6 +177,7 @@
   .social
     display: flex;
     overflow: hidden
+    margin-top: 1.5rem
     > span
       padding: .75rem 1rem
       color: $white

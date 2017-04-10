@@ -19,7 +19,7 @@
 
   footer
     height: 5rem
-    margin-top: 1rem
+    margin-top: 2rem
     justify-content: center
     border-top: 1px solid rgba($black, .05)
     background: darken($white, 4)

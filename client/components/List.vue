@@ -184,7 +184,7 @@
     width: 100%
     background-size: cover
     background-position: 50% 80%
-    clip-path: polygon(0 0, 100% 0, 100% 95%, 50% 100%, 0 95%)
+    clip-path: polygon(0 0, 100% 0, 100% 66vh, 50% 100%, 0 66vh)
     &:before
       content: ''
       position: absolute
