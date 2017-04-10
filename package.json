@@ -28,7 +28,8 @@
     "marked": "~0.3.6",
     "offline-plugin": "~4.6.2",
     "timeago.js": "~3.0.1",
-    "vue": "~2.2.6"
+    "vue": "~2.2.6",
+    "vue-social-sharing": "^2.2.0"
   },
   "devDependencies": {
     "autoprefixer": "~6.7.7",

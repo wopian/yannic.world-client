@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import SocialSharing from 'vue-social-sharing'
 import App from './App'
 import router from './router'
 import filter from './utils/filter'
@@ -13,6 +14,8 @@ router.beforeEach((to, from, next) => {
   window.scrollTo(0, 0)
   next()
 })
+
+Vue.use(SocialSharing)
 
 filter(Vue)
 

@@ -21,14 +21,13 @@
     },
     computed: {
       dev () {
-        return window.location.hostname === 'localhost' || this.$route.query.dev
+        return window.location.hostname === 'localhost' || window.location.hostname === '192.168.137.1' || this.$route.query.dev
       }
     }
   }
 </script>
 
 <style lang='sass'>
-  @import ~prismjs/themes/prism.css
   @import ~bootstrap/scss/variables
   @import ~bootstrap/scss/mixins
   @import ~bootstrap/scss/normalize
@@ -64,6 +63,7 @@
   // @import ~bootstrap/scss/popover
   // @import ~bootstrap/scss/carousel
   @import ~bootstrap/scss/utilities
+  @import ~prismjs/themes/prism.css
 </style>
 
 <style lang='sass' scoped>

@@ -32,12 +32,14 @@
   import Fuse from 'fuse.js'
   import api from 'client/api'
   import config from 'client/config'
+  import { toTitleCase } from 'client/utils'
 
   export default {
     name: 'listView',
     data () {
       return {
-        lists: null
+        lists: null,
+        toTitleCase
       }
     },
     computed: {
@@ -79,11 +81,6 @@
             this.lists = lists
           })
           .catch(err => { console.error(err) })
-      },
-      toTitleCase (title) {
-        return title.split('-').map(word => {
-          return word.charAt(0).toUpperCase() + word.substring(1).toLowerCase()
-        }).join(' ')
       }
     },
     watch: {
@@ -112,7 +109,6 @@
         &
           margin-top: 10vh
       a
-        font-size: 4rem
         text-align: center
         display: block
         color: $white
@@ -187,7 +183,7 @@
     height: 70vh
     width: 100%
     background-size: cover
-    background-position: 0 80%
+    background-position: 50% 80%
     clip-path: polygon(0 0, 100% 0, 100% 95%, 50% 100%, 0 95%)
     &:before
       content: ''

@@ -42,7 +42,6 @@
   header
     background: rgba($white, .95)
     transition: background 400ms ease-out
-    border-bottom: 1px solid rgba($black, .05)
     height: 5rem
     justify-content: center
     &:hover
@@ -50,6 +49,8 @@
         color: darken($black, 2)
       a
         color: rgba(darken($black, 2), .7)
+    &:not(.transparent)
+      border-bottom: 1px solid rgba($black, .05)
 
   nav
     @include media-breakpoint-down(xs)

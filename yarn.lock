@@ -2217,6 +2217,10 @@ estraverse@~4.1.0:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/estraverse/-/estraverse-4.1.1.tgz#f6caca728933a850ef90661d0e17982ba47111a2"
 
+estree-walker@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/estree-walker/-/estree-walker-0.2.1.tgz#bdafe8095383d8414d5dc2ecf4c9173b6db9412e"
+
 esutils@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/esutils/-/esutils-2.0.2.tgz#0abf4f1caa5bcb1f7a9d8acc6dea4faaa04bac9b"
@@ -2567,7 +2571,7 @@ function-bind@^1.0.2, function-bind@~1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.0.tgz#16176714c801798e4e8f2cf7f7529467bb4a5771"
 
-fuse.js@^2.6.2:
+fuse.js@~2.6.2:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/fuse.js/-/fuse.js-2.6.2.tgz#d5d994fda96f543b5a51df38b72cec9cc60d9dea"
 
@@ -5164,6 +5168,19 @@ ripemd160@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/ripemd160/-/ripemd160-1.0.1.tgz#93a4bbd4942bc574b69a8fa57c71de10ecca7d6e"
 
+rollup-plugin-json@^2.1.0:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-json/-/rollup-plugin-json-2.1.1.tgz#933390dff3c9e3e654157d61304c5e167fc58623"
+  dependencies:
+    rollup-pluginutils "^1.5.2"
+
+rollup-pluginutils@^1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/rollup-pluginutils/-/rollup-pluginutils-1.5.2.tgz#1e156e778f94b7255bfa1b3d0178be8f5c552408"
+  dependencies:
+    estree-walker "^0.2.1"
+    minimatch "^3.0.2"
+
 run-async@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/run-async/-/run-async-0.1.0.tgz#c8ad4a5e110661e402a7d21b530e009f25f8e389"
@@ -5865,6 +5882,12 @@ vue-server-renderer@~2.2.6:
     resolve "^1.2.0"
     source-map "0.5.6"
     vue-ssr-html-stream "^2.1.0"
+
+vue-social-sharing@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/vue-social-sharing/-/vue-social-sharing-2.2.0.tgz#a0809300490fc98a450c8a2c55f32ec6b8edc1d8"
+  dependencies:
+    rollup-plugin-json "^2.1.0"
 
 vue-ssr-html-stream@^2.1.0:
   version "2.2.0"
