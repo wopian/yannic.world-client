@@ -1,5 +1,5 @@
 <template lang='pug'>
-  #app(v-if='dev')
+  #app
     navbar(v-bind:dev='dev')
     router-view
     foobar
@@ -21,7 +21,7 @@
     },
     computed: {
       dev () {
-        return window.location.hostname === 'localhost' || window.location.hostname === '192.168.137.1' || this.$route.query.dev
+        return window.location.hostname === 'localhost'
       }
     }
   }
