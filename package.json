@@ -68,7 +68,7 @@
     "jest-vue-preprocessor": "~0.2.0",
     "js-beautify": "~1.6.12",
     "lolex": "~1.6.0",
-    "node-sass": "~4.5.2",
+    "node-sass": "~4.9.2",
     "optimize-css-assets-webpack-plugin": "~1.3.0",
     "ora": "~1.2.0",
     "prismjs": "~1.6.0",
