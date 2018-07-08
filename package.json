@@ -119,5 +119,21 @@
     "snapshotSerializers": [
       "<rootDir>/test/jest/htmlSnapshotBeautifier.js"
     ]
+  },
+  "renovate": {
+    "extends": [
+      "@wopian"
+    ],
+    "baseBranch": "new",
+    "packageRules": [
+      {
+        "packageNames": [
+          "vue",
+          "vue-router",
+          "vue-template-compiler"
+        ],
+        "groupName": "vue"
+      }
+    ]
   }
 }
