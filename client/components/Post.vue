@@ -133,6 +133,10 @@
     @include media-breakpoint-up(lg)
       &
         font-size: 4rem
+        
+  article
+    img
+      max-width: 100%
 
   .author
     display: flex
