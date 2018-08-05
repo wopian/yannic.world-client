@@ -133,10 +133,6 @@
     @include media-breakpoint-up(lg)
       &
         font-size: 4rem
-        
-  article
-    img
-      max-width: 100%
 
   .author
     display: flex
@@ -172,6 +168,8 @@
   @import ~style/variables
 
   article
+    img
+      max-width: 100%
     pre
       background: darken($white, 2)
       padding: .75rem
